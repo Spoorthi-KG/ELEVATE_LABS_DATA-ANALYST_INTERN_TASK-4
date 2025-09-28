@@ -1,0 +1,51 @@
+-- output.txt
+
+
+mysql> SELECT * FROM customers;
++----+----------------+-------------------+---------------------+
+| id | name           | email             | created_at          |
++----+----------------+-------------------+---------------------+
+|  1 | Alice Johnson  | alice@gmail.com   | 2025-09-28 12:00:00 |
+|  2 | Bob Smith      | bob@yahoo.com     | 2025-09-28 12:00:00 |
+|  3 | Charlie Brown  | charlie@hotmail.com| 2025-09-28 12:00:00|
++----+----------------+-------------------+---------------------+
+
+mysql> SELECT * FROM products;
++----+------------+---------+-------+---------------------+
+| id | name       | price   | stock | created_at          |
++----+------------+---------+-------+---------------------+
+|  1 | Laptop     | 55000.00|    10 | 2025-09-28 12:00:00 |
+|  2 | Phone      | 25000.00|    15 | 2025-09-28 12:00:00 |
+|  3 | Headphones |  2000.00|    30 | 2025-09-28 12:00:00 |
+|  4 | Keyboard   |  1500.00|    20 | 2025-09-28 12:00:00 |
++----+------------+---------+-------+---------------------+
+
+mysql> SELECT o.id AS order_id, c.name, o.total, o.order_date FROM orders o JOIN customers c ON o.customer_id = c.id;
++----------+----------------+---------+---------------------+
+| order_id | name           | total   | order_date          |
++----------+----------------+---------+---------------------+
+|        1 | Alice Johnson  | 55000.00| 2025-09-28 12:00:00 |
+|        2 | Bob Smith      | 27000.00| 2025-09-28 12:00:00 |
+|        3 | Charlie Brown  | 21500.00| 2025-09-28 12:00:00 |
++----------+----------------+---------+---------------------+
+
+mysql> SELECT SUM(total) AS total_revenue FROM orders;
++---------------+
+| total_revenue |
++---------------+
+|       103500.00 |
++---------------+
+
+mysql> SELECT p.name, SUM(oi.quantity * oi.unit_price) AS revenue
+    -> FROM order_items oi
+    -> JOIN products p ON p.id = oi.product_id
+    -> GROUP BY p.id, p.name
+    -> ORDER BY revenue DESC;
++------------+----------+
+| name       | revenue  |
++------------+----------+
+| Laptop     | 55000.00 |
+| Phone      | 50000.00 |
+| Headphones |  2000.00 |
+| Keyboard   |  1500.00 |
++------------+----------+
