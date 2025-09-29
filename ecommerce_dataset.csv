@@ -1,0 +1,6 @@
+order_id,order_date,customer_id,customer_name,customer_email,product_id,product_name,unit_price,quantity,line_total,order_total
+1,2025-09-28 12:00:00,1,Alice Johnson,alice@gmail.com,1,Laptop,55000,1,55000,55000
+2,2025-09-28 12:00:00,2,Bob Smith,bob@yahoo.com,2,Phone,25000,1,25000,27000
+2,2025-09-28 12:00:00,2,Bob Smith,bob@yahoo.com,3,Headphones,2000,1,2000,27000
+3,2025-09-28 12:00:00,3,Charlie Brown,charlie@hotmail.com,2,Phone,25000,1,25000,21500
+3,2025-09-28 12:00:00,3,Charlie Brown,charlie@hotmail.com,4,Keyboard,1500,1,1500,21500
